@@ -3,3 +3,4 @@
 .idea
 *.txt
 *.dmg
+/test_resources
