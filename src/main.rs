@@ -1,8 +1,8 @@
 mod hdiutil;
-mod lib;
+mod passwords;
 
 use crate::hdiutil::attempt_password;
-use crate::lib::read_password_list;
+use crate::passwords::read_password_list;
 
 use indicatif::ProgressBar;
 
