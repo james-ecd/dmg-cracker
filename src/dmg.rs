@@ -69,3 +69,14 @@ pub fn generate_random_mount_path() -> String {
         generate(6, "abcdefghijklmnopqrstuvwxyz")
     )
 }
+
+#[cfg(test)]
+mod test_dmg {
+    use super::Dmg;
+
+    #[test]
+    fn attempt_attach_makes_correct_system_call() {}
+
+    #[test]
+    fn attempt_detach_makes_correct_system_call() {}
+}
