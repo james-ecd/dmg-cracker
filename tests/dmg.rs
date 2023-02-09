@@ -21,6 +21,3 @@ fn creating_new_dmg_struct_inits_correctly() {
     assert_eq!(dmg_path, dmg.dmg_path);
     assert!(is_mounting_path_valid(&dmg.mount_path));
 }
-
-#[test]
-fn attempt_password_calls_correct_funcs() {}
