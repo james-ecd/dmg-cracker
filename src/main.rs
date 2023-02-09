@@ -23,19 +23,12 @@ fn main() {
     let passwords = read_password_list(&args.password_list_path).unwrap();
     let dmg = Dmg::new(&args.dmg_path);
     let pb = ProgressBar::new(passwords.len().try_into().unwrap());
-    let mut found = false;
     for p in passwords {
-        let success = dmg.attempt_password(&p);
-        pb.inc(1);
-        if success {
+        if dmg.attempt_password(&p) {
             println!("Password found: {}", &p);
-            pb.finish_with_message(format!("Password found: {}", &p));
-            pb.finish_and_clear();
-            found = true;
-            break;
+            return;
         }
+        pb.inc(1);
     }
-    if !found {
-        println!("No matching password found");
-    }
+    println!("No matching password found");
 }
