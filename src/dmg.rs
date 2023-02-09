@@ -5,8 +5,8 @@ use std::process::{Command, Stdio};
 const BASE_MOUNT_PATH: &str = "/tmp/";
 
 pub struct Dmg {
-    dmg_path: String,
-    mount_path: String,
+    pub dmg_path: String,
+    pub mount_path: String,
 }
 
 impl Dmg {
@@ -46,7 +46,8 @@ impl Dmg {
             .write_all(password.as_bytes())
             .expect("failed to write password to stdin");
 
-        let output = child.wait_with_output().expect("failed to wait on hdiutil");
+        let output =
+            child.wait_with_output().expect("failed to wait on hdiutil");
         output.status.success()
     }
 
@@ -72,7 +73,7 @@ pub fn generate_random_mount_path() -> String {
 
 #[cfg(test)]
 mod test_dmg {
-    use super::Dmg;
+    // use super::Dmg;
 
     #[test]
     fn attempt_attach_makes_correct_system_call() {}
