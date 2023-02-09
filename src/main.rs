@@ -1,7 +1,7 @@
-mod hdiutil;
+mod dmg;
 mod passwords;
 
-use crate::hdiutil::attempt_password;
+use crate::dmg::Dmg;
 use crate::passwords::read_password_list;
 use clap::Parser;
 use indicatif::ProgressBar;
@@ -21,10 +21,11 @@ struct Args {
 fn main() {
     let args = Args::parse();
     let passwords = read_password_list(&args.password_list_path).unwrap();
+    let dmg = Dmg::new(&args.dmg_path);
     let pb = ProgressBar::new(passwords.len().try_into().unwrap());
     let mut found = false;
     for p in passwords {
-        let success = attempt_password(&args.dmg_path, &p);
+        let success = dmg.attempt_password(&p);
         pb.inc(1);
         if success {
             println!("Password found: {}", &p);
