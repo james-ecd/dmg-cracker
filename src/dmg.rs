@@ -18,19 +18,12 @@ impl Dmg {
     }
 
     pub fn attempt_password(&self, password: &str) -> bool {
-        if self.attempt_attach(&password) {
-            assert!(self.detach());
-            return true;
-        }
-        false
+        self.attempt_attach(&password)
     }
 
     fn attempt_attach(&self, password: &str) -> bool {
         let mut child = Command::new("hdiutil")
-            .arg("attach")
-            .arg("-readonly")
-            .arg("-mountpoint")
-            .arg(&self.mount_path)
+            .arg("verify")
             .arg("-stdinpass")
             .arg(&self.dmg_path)
             .stdin(Stdio::piped())
@@ -48,17 +41,6 @@ impl Dmg {
 
         let output =
             child.wait_with_output().expect("failed to wait on hdiutil");
-        output.status.success()
-    }
-
-    fn detach(&self) -> bool {
-        let output = Command::new("hdiutil")
-            .arg("detach")
-            .arg(&self.mount_path)
-            .stdout(Stdio::null())
-            .stderr(Stdio::null())
-            .output()
-            .expect("failed to execute hdiutil");
         output.status.success()
     }
 }

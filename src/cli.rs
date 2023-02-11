@@ -10,4 +10,8 @@ pub struct Args {
     /// Path to encrypted .dmg file
     #[arg(short, long)]
     pub dmg_path: String,
+
+    /// Number of threads to run
+    #[arg(short, long, default_value_t = 4)]
+    pub thread_count: u8,
 }
