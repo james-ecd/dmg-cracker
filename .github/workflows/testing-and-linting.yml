@@ -29,11 +29,6 @@ jobs:
         toolchain: stable
         profile: minimal
 
-    - name: Install dependencies
-      run: |
-        cargo install cargo-fmt
-        cargo install clippy
-
     - name: Run tests
       run: |
         cargo test --all
