@@ -5,7 +5,7 @@ pub mod passwords;
 use crate::dmg::Dmg;
 use crate::passwords::read_password_list;
 use clap::Parser;
-use indicatif::{MultiProgress, ProgressBar};
+use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
 use rayon::prelude::*;
 use std::sync::{Arc, RwLock};
 
@@ -34,6 +34,12 @@ fn attempt_passwords_in_parallel(
 ) -> Option<String> {
     let password_vec_size = passwords.len();
     let mp = MultiProgress::new();
+    let sty = ProgressStyle::with_template(
+        "[{elapsed_precise}] {bar:40.cyan/blue} {pos:>7}/{len:7} {msg}",
+    )
+    .unwrap()
+    .progress_chars("##-");
+
     let shared_mp = Arc::new(&mp);
     let shared_dmg_path = Arc::new(dmg_path);
     let shared_password_found = Arc::new(RwLock::new(String::new()));
@@ -46,6 +52,7 @@ fn attempt_passwords_in_parallel(
     chunks.into_par_iter().for_each(|chunk| {
         let pb =
             Arc::clone(&shared_mp).add(ProgressBar::new(chunk.len() as u64));
+        pb.set_style(sty.clone());
         let password_found = Arc::clone(&shared_password_found);
 
         rayon::scope(|s| {
