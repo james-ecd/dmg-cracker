@@ -17,6 +17,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.cargo
+        key: ${{ runner.os }}-cargo-${{ hashFiles('Cargo.lock') }}
+
     - name: Setup Rust
       uses: actions-rs/toolchain@v1
       with:
@@ -26,8 +32,8 @@ jobs:
     - name: Install dependencies
       run: |
         cargo install cargo-tarpaulin
-        cargo install cargo-audit
-        rustup component add rustfmt-preview
+        cargo install cargo-fmt
+        cargo install clippy
 
     - name: Run tests
       run: |
@@ -44,6 +50,3 @@ jobs:
         bash <(curl -s https://codecov.io/bash)
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-
-#    - name: Upload coverage reports to Codecov
-#      uses: codecov/codecov-action@v3
