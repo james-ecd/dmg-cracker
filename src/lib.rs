@@ -36,7 +36,7 @@ fn attempt_passwords_in_parallel(
     let password_vec_size = passwords.len();
     let mp = MultiProgress::new();
     let sty = ProgressStyle::with_template(
-        "[{elapsed_precise}] {bar:40.cyan/blue} {pos:>7}/{len:7} ({eta})",
+        "[{elapsed_precise}] {bar:40.cyan/blue} {pos:>7}/{len:7} ({eta}) ({per_sec})",
     )
     .unwrap()
     .progress_chars("##-");
