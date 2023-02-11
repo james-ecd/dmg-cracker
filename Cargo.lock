@@ -139,6 +139,7 @@ name = "dmg-cracker"
 version = "0.1.0"
 dependencies = [
  "clap",
+ "console",
  "indicatif",
  "mockall",
  "num_cpus",

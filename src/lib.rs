@@ -5,14 +5,18 @@ pub mod passwords;
 use crate::dmg::Dmg;
 use crate::passwords::read_password_list;
 use clap::Parser;
+use console::Emoji;
 use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
 use rayon::prelude::*;
 use std::env;
 use std::sync::{Arc, RwLock};
 
+static PADLOCK: Emoji<'_, '_> = Emoji("🔒", "");
+
 pub fn run() {
     let args = cli::Args::parse();
     let passwords = read_password_list(&args.password_list_path).unwrap();
+    println!("{PADLOCK} Attempting passwords...");
     let found_password = attempt_passwords_in_parallel(
         &passwords,
         &args.dmg_path,
