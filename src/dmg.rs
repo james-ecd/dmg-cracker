@@ -18,7 +18,7 @@ impl Dmg {
     }
 
     pub fn attempt_password(&self, password: &str) -> bool {
-        self.attempt_attach(&password)
+        self.attempt_attach(password)
     }
 
     fn attempt_attach(&self, password: &str) -> bool {
