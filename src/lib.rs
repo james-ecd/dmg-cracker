@@ -7,6 +7,7 @@ use crate::passwords::read_password_list;
 use clap::Parser;
 use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
 use rayon::prelude::*;
+use std::env;
 use std::sync::{Arc, RwLock};
 
 pub fn run() {
@@ -35,7 +36,7 @@ fn attempt_passwords_in_parallel(
     let password_vec_size = passwords.len();
     let mp = MultiProgress::new();
     let sty = ProgressStyle::with_template(
-        "[{elapsed_precise}] {bar:40.cyan/blue} {pos:>7}/{len:7} {msg}",
+        "[{elapsed_precise}] {bar:40.cyan/blue} {pos:>7}/{len:7} ({eta})",
     )
     .unwrap()
     .progress_chars("##-");
@@ -49,6 +50,7 @@ fn attempt_passwords_in_parallel(
         .map(|chunk| chunk.to_vec())
         .collect::<Vec<_>>();
 
+    env::set_var("RAYON_NUM_THREADS", format!("{thread_count}"));
     chunks.into_par_iter().for_each(|chunk| {
         let pb =
             Arc::clone(&shared_mp).add(ProgressBar::new(chunk.len() as u64));

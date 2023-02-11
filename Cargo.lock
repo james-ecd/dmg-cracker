@@ -141,6 +141,7 @@ dependencies = [
  "clap",
  "indicatif",
  "mockall",
+ "num_cpus",
  "random-string",
  "rayon",
  "regex",

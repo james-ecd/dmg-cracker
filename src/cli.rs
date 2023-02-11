@@ -11,7 +11,7 @@ pub struct Args {
     #[arg(short, long)]
     pub dmg_path: String,
 
-    /// Number of threads to run
-    #[arg(short, long, default_value_t = 4)]
+    /// Number of threads to run (defaults to num of logical cores)
+    #[arg(short, long, default_value_t = num_cpus::get().try_into().unwrap())]
     pub thread_count: u8,
 }
