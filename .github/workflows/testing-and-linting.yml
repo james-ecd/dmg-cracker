@@ -34,9 +34,17 @@ jobs:
         cargo fmt --all -- --check
         cargo clippy --all-targets --all-features -- -D warnings
 
+    - name: Cache tarpaulin
+      uses: actions/cache@v2
+      id: tarpaulin
+      with:
+        path: ~/.cargo/bin/cargo-tarpaulin
+        key: tarpaulin-${{ runner.os }}
+
     - name: Install tarpaulin
       run: |
         cargo install cargo-tarpaulin
+      if: steps.tarpaulin.outputs.cache-hit != 'true'
 
     - name: Run tests and collect coverage reports
       run: |
