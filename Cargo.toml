@@ -4,15 +4,14 @@ version = "0.1.0"
 edition = "2021"
 authors = ["James Davis <jamesecd@gmail.com"]
 rust-version = "1.67.0"
-description = "Tool for brute forceing encrypted DMG images on OSX"
+description = "Tool for brute forcing encrypted DMG images on OSX"
 readme = "README.md"
-#respository = "https://github.com/james-ecd/dmg-cracker"
+homepage = "https://github.com/james-ecd/dmg-cracker"
+respository = "https://github.com/james-ecd/dmg-cracker"
 license-file = "LICENSE"
 keywords = ["encrpyted", "dmg", "brute", "force", "cracker"]
-#categories = ["command-line-utilities"]
+categories = ["command-line-utilities"]
 exclude = ["/test_resources"]
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 clap = { version = "4.1.4", features = ["derive"] }

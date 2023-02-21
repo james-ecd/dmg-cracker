@@ -16,22 +16,12 @@ of the user to comply with all applicable laws and regulations.
 </p>
 
 ## Installation
-TODO
-
-
-## Benchmarks
-TODO
-
-## Usage
-### Transactions
-TODO
-``` bash
-
-```
+`cargo install dmg-cracker`
 
 ## Upcoming features
-- speed improvements
+- performance optimisations
 - support for testing different permutations of a given password list
+- increase test coverage
 
 ## Testing / Contributing
 Any contributions or issue raising is welcomed. If you wish to contribute then:
