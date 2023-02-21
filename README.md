@@ -1,5 +1,6 @@
 # DMG Cracker
 [![Linting and tests](https://github.com/james-ecd/dmg-cracker/actions/workflows/testing-and-linting.yml/badge.svg?branch=main)](https://github.com/james-ecd/dmg-cracker/actions/workflows/testing-and-linting.yml)
+<img src="https://img.shields.io/crates/v/dmg-cracker.svg"/>
 [![codecov](https://codecov.io/gh/james-ecd/dmg-cracker/branch/main/graph/badge.svg?token=C96XYRSKI4)](https://codecov.io/gh/james-ecd/dmg-cracker)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
