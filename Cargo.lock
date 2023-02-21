@@ -136,7 +136,7 @@ checksum = "6184e33543162437515c2e2b48714794e37845ec9851711914eec9d308f6ebe8"
 
 [[package]]
 name = "dmg-cracker"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "clap",
  "console",
