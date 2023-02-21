@@ -11,6 +11,8 @@ should not be used for illegal purposes. The author assumes no
 responsibility for any misuse of the tool and it is the responsibility 
 of the user to comply with all applicable laws and regulations.
 
+<img src="./resources/demo.gif" alt="Demo GIF">
+
 ## Installation
 TODO
 
