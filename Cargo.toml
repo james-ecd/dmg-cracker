@@ -1,15 +1,15 @@
 [package]
 name = "dmg-cracker"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = ["James Davis <jamesecd@gmail.com"]
 rust-version = "1.67.0"
-description = "Tool for brute forcing encrypted DMG images on OSX"
+description = "Tool for performing dictionary attacks on encrypted DMG images on OSX"
 readme = "README.md"
 homepage = "https://github.com/james-ecd/dmg-cracker"
 respository = "https://github.com/james-ecd/dmg-cracker"
 license-file = "LICENSE"
-keywords = ["encrpyted", "dmg", "brute", "force", "cracker"]
+keywords = ["encrpyted", "dmg", "dictionary", "attack", "cracker"]
 categories = ["command-line-utilities"]
 exclude = ["/test_resources"]
 
