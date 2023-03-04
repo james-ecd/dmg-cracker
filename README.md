@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/james-ecd/dmg-cracker/branch/main/graph/badge.svg?token=C96XYRSKI4)](https://codecov.io/gh/james-ecd/dmg-cracker)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-CLI for brute forcing encrypted Apple Disk Image files (.dmg)
+CLI for performing dictionary attacks on encrypted Apple Disk Image files (.dmg)
 
 While this tool offers a solution for accessing encrypted disk images,
 it is important to note that it is intended for personal use only and 
@@ -20,7 +20,7 @@ of the user to comply with all applicable laws and regulations.
 `cargo install dmg-cracker`
 
 ## Upcoming features
-- performance optimisations
+- investigate implementing AES decrpytion manually. Current road block being a method of extracting the key generation salt from the dmg file headers
 - support for testing different permutations of a given password list
 - increase test coverage
 
