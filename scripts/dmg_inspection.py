@@ -1,22 +1,18 @@
 import struct
 
-with open('/Users/jamesdavis/Documents/repos/dmg-cracker/test_resources/test.dmg', 'rb') as f:
-    # Read the first 512 bytes of the file (the header)
-    header = f.read(512)
+# Set the path to the encrypted .dmg file
+file_path = '/Users/jamesdavis/Documents/repos/dmg-cracker/test_resources/test.dmg'
 
-    # Parse the header using the 'unpack' method of the 'struct' module
-    signature, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _ = struct.unpack(
-        '>QIIIIIHHHHHHHHHHHHHHHHHH', header)
+# Read the first 1024 bytes of the encrypted .dmg file to extract the header
+with open(file_path, "rb") as f:
+    header = f.read(1024)
 
-    # Determine the size of the header
-    header_size = 64
+# Extract the encryption algorithm identifier, key size, and salt value from the header
+algorithm = header[2:6]
+key_size = struct.unpack(">I", header[6:10])[0]
+salt = header[14:30]
 
-    # Construct the format string for the header
-    format_string = '>' + 'I' * ((header_size - 8) // 4)
-
-    # Read the entire header using the determined format string
-    fields = struct.unpack(format_string, header[:header_size])
-
-    # Print out the values of all the fields
-    for i, field in enumerate(fields):
-        print(f'Field {i}: {field}')
+# Print the extracted values
+print("Encryption algorithm:", algorithm)
+print("Key size:", key_size)
+print("Salt value:", salt)
