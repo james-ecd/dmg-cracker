@@ -1,7 +1,13 @@
-use cipher::KeyInit;
 use random_string::generate;
 use std::io::Write;
 use std::process::{Command, Stdio};
+
+use crypto::aes::{self, KeySize};
+use crypto::blockmodes::NoPadding;
+use crypto::buffer::{RefReadBuffer, RefWriteBuffer};
+use crypto::digest::Digest;
+use crypto::pbkdf2::pbkdf2;
+use crypto::sha2::Sha256;
 
 const BASE_MOUNT_PATH: &str = "/tmp/";
 
