@@ -14,7 +14,7 @@ categories = ["command-line-utilities"]
 exclude = ["/test_resources"]
 
 [dependencies]
-clap = { version = "4.1.8", features = ["derive"] }
+clap = { version = "4.1.9", features = ["derive"] }
 console = "0.15.5"
 indicatif = {version = "0.17.3", features = ["rayon"]}
 num_cpus = "1.15.0"
