@@ -16,7 +16,7 @@ exclude = ["/test_resources"]
 [dependencies]
 clap = { version = "4.4.3", features = ["derive"] }
 console = "0.15.7"
-indicatif = {version = "0.17.5", features = ["rayon"]}
+indicatif = {version = "0.17.7", features = ["rayon"]}
 num_cpus = "1.15.0"
 random-string = "1.0.0"
 rayon = "1.7.0"
