@@ -45,7 +45,7 @@ jobs:
 
     - name: Generate coverage report
       run: |
-        cargo tarpaulin --out Xml
+        cargo tarpaulin --out xml
         bash <(curl -s https://codecov.io/bash)
       env:
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
