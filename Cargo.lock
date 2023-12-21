@@ -445,9 +445,9 @@ dependencies = [
 
 [[package]]
 name = "random-string"
-version = "1.0.0"
+version = "1.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cf4e63111ec5292d8af9c220f06fe3bb87991cc78b6f1f7e291d1ae6b8a60817"
+checksum = "e3ada7982e596021551fc3b96413c6077d2ebf57a8f94a3aed70cc71dda78c38"
 dependencies = [
  "fastrand 1.8.0",
 ]
