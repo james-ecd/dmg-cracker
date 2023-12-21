@@ -33,3 +33,9 @@ Any contributions or issue raising is welcomed. If you wish to contribute then:
 Pull requests will be blocked from merging automatically if:
 - there are failing tests
 - linting rules have been violated.
+
+## Updating package
+- bump version number in `cargo.toml` and `cargo.lock`
+- commit version bump
+- create new release on github
+- `cargo publish`
