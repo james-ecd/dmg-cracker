@@ -24,7 +24,7 @@ rayon = "1.8.0"
 [dev-dependencies]
 mockall = "0.11.4"
 regex = "1.10.2"
-tempfile = "3.8.1"
+tempfile = "3.10.1"
 
 [lib]
 name = "dmg_cracker"
