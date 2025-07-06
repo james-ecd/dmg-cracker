@@ -1,8 +1,12 @@
 # DMG Cracker
-[![Linting and tests](https://github.com/james-ecd/dmg-cracker/actions/workflows/testing-and-linting.yml/badge.svg?branch=main)](https://github.com/james-ecd/dmg-cracker/actions/workflows/testing-and-linting.yml)
-<img src="https://img.shields.io/crates/v/dmg-cracker.svg"/>
+
+[![CI](https://github.com/james-ecd/dmg-cracker/actions/workflows/testing-and-linting.yml/badge.svg)](https://github.com/james-ecd/dmg-cracker/actions/workflows/testing-and-linting.yml)
+[![Crates.io](https://img.shields.io/crates/v/dmg-cracker)](https://crates.io/crates/dmg-cracker)
+[![Downloads](https://img.shields.io/crates/d/dmg-cracker)](https://crates.io/crates/dmg-cracker)
 [![codecov](https://codecov.io/gh/james-ecd/dmg-cracker/branch/main/graph/badge.svg?token=C96XYRSKI4)](https://codecov.io/gh/james-ecd/dmg-cracker)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Rust](https://img.shields.io/badge/rust-1.72.1%2B-orange.svg)](https://www.rust-lang.org)
+[![Platform](https://img.shields.io/badge/platform-macOS-lightgrey.svg)](https://www.apple.com/macos)
 
 CLI for performing dictionary attacks on encrypted Apple Disk Image files (.dmg)
 
