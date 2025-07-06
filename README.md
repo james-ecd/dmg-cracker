@@ -28,7 +28,7 @@ dmg-cracker -p <password-list.txt> -d <encrypted-file.dmg> -t <thread-count>
 ```
 
 **Required Arguments:**
-- `-p, --password-list-path`: Path to a text file containing passwords (one per line)
+- `-p, --password-list-path`: Path to a password list file (.txt or .csv format)
 - `-d, --dmg-path`: Path to the encrypted DMG file
 
 **Optional Arguments:**
@@ -36,6 +36,7 @@ dmg-cracker -p <password-list.txt> -d <encrypted-file.dmg> -t <thread-count>
 
 ### Creating a Password List
 
+**Text File Format (.txt):**
 Create a text file with one password per line:
 
 ```bash
@@ -49,18 +50,44 @@ password123
 welcome
 ```
 
+**CSV Format (.csv):**
+Create a CSV file with passwords in the first column:
+
+```bash
+# Example: passwords.csv
+password1,common
+123456,weak
+qwerty,keyboard
+letmein,simple
+admin,default
+password123,variation
+welcome,greeting
+```
+
+The tool automatically detects file format based on extension and uses only the first column for CSV files.
+
 You can use existing wordlists like:
 - [SecLists](https://github.com/danielmiessler/SecLists) - Comprehensive password lists
 - [rockyou.txt](https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt) - Popular password dictionary
 
-### Example
+### Examples
 
+**Using text file:**
 ```bash
 # Create a simple password list
 echo -e "password\n123456\nletmein\npassword123" > passwords.txt
 
 # Run the cracker
 dmg-cracker -p passwords.txt -d encrypted.dmg -t 4
+```
+
+**Using CSV file:**
+```bash
+# Create a CSV password list
+echo -e "password,type\n123456,weak\nletmein,simple\npassword123,variation" > passwords.csv
+
+# Run the cracker
+dmg-cracker -p passwords.csv -d encrypted.dmg -t 4
 ```
 
 The tool will display progress bars for each thread and stop when the correct password is found.

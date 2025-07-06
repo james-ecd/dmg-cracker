@@ -3,7 +3,7 @@ use clap::Parser;
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
 pub struct Args {
-    /// Path to password list .txt file (passwords seperated by newlines)
+    /// Path to password list file (.txt or .csv format)
     #[arg(short, long)]
     pub password_list_path: String,
 

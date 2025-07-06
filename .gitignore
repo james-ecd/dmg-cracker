@@ -2,6 +2,7 @@
 **/*.rs.bk
 .idea
 *.txt
+*.csv
 *.dmg
 /test_resources
 
