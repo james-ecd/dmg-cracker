@@ -33,7 +33,7 @@ pub fn run() {
 }
 
 fn attempt_passwords_in_parallel(
-    passwords: &Vec<String>,
+    passwords: &[String],
     dmg_path: &String,
     thread_count: &u8,
 ) -> Option<String> {
@@ -50,7 +50,7 @@ fn attempt_passwords_in_parallel(
     let shared_password_found = Arc::new(RwLock::new(String::new()));
 
     let chunks = passwords
-        .chunks(password_vec_size / usize::try_from(*thread_count).unwrap())
+        .chunks(password_vec_size / usize::from(*thread_count))
         .map(|chunk| chunk.to_vec())
         .collect::<Vec<_>>();
 
@@ -67,7 +67,7 @@ fn attempt_passwords_in_parallel(
                 for p in chunk {
                     // check if another thread has found the password
                     let password_found_read = password_found.read().unwrap();
-                    if password_found_read.len() > 0 {
+                    if !password_found_read.is_empty() {
                         return;
                     };
                     drop(password_found_read);
