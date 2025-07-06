@@ -1,6 +1,6 @@
 [package]
 name = "dmg-cracker"
-version = "0.1.7"
+version = "0.2.0"
 edition = "2021"
 authors = ["James Davis <jamesecd@gmail.com"]
 rust-version = "1.72.1"
