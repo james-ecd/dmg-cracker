@@ -14,16 +14,16 @@ categories = ["command-line-utilities"]
 exclude = ["/test_resources"]
 
 [dependencies]
-clap = { version = "4.5.0", features = ["derive"] }
-console = "0.15.7"
-indicatif = {version = "0.17.7", features = ["rayon"]}
-num_cpus = "1.16.0"
-random-string = "1.0.1"
-rayon = "1.8.0"
+clap = { version = "4.5.40", features = ["derive"] }
+console = "0.16.0"
+indicatif = {version = "0.18.0", features = ["rayon"]}
+num_cpus = "1.17.0"
+random-string = "1.1.0"
+rayon = "1.10.0"
 
 [dev-dependencies]
-regex = "1.10.2"
-tempfile = "3.8.1"
+regex = "1.11.1"
+tempfile = "3.20.0"
 
 [lib]
 name = "dmg_cracker"
