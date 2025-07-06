@@ -7,7 +7,7 @@ rust-version = "1.72.1"
 description = "Tool for performing dictionary attacks on encrypted DMG images on OSX"
 readme = "README.md"
 homepage = "https://github.com/james-ecd/dmg-cracker"
-respository = "https://github.com/james-ecd/dmg-cracker"
+repository = "https://github.com/james-ecd/dmg-cracker"
 license-file = "LICENSE"
 keywords = ["encrpyted", "dmg", "dictionary", "attack", "cracker"]
 categories = ["command-line-utilities"]
@@ -22,7 +22,6 @@ random-string = "1.0.1"
 rayon = "1.8.0"
 
 [dev-dependencies]
-mockall = "0.11.4"
 regex = "1.10.2"
 tempfile = "3.8.1"
 
