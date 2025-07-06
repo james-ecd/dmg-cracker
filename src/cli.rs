@@ -12,6 +12,10 @@ pub struct Args {
     pub dmg_path: String,
 
     /// Number of threads to run (defaults to num of logical cores)
-    #[arg(short, long, default_value_t = num_cpus::get().try_into().unwrap())]
-    pub thread_count: u8,
+    #[arg(short, long, default_value_t = num_cpus::get())]
+    pub thread_count: usize,
+
+    /// Randomize password order to avoid predictable patterns
+    #[arg(short, long, default_value_t = false)]
+    pub randomize: bool,
 }
