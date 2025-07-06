@@ -13,7 +13,7 @@ impl Dmg {
     pub fn new(dmg_path: &str) -> Self {
         Self {
             dmg_path: dmg_path.to_string(),
-            mount_path: generate_random_mount_path(),
+            mount_path: generate_random_string(),
         }
     }
 
@@ -38,7 +38,7 @@ impl Dmg {
                 eprintln!("   - You're running on macOS (hdiutil is required)");
                 eprintln!("   - You have permission to access the DMG file");
                 eprintln!("   - The DMG file exists and is not corrupted");
-                std::process::exit(1);
+                return false;
             }
         };
 
@@ -62,7 +62,7 @@ impl Dmg {
     }
 }
 
-pub fn generate_random_mount_path() -> String {
+pub fn generate_random_string() -> String {
     format!(
         "{}{}",
         BASE_MOUNT_PATH,

@@ -6,8 +6,8 @@ fn is_mounting_path_valid(generated_path: &str) -> bool {
 }
 
 #[test]
-fn generate_random_mount_path_returns_correctly() {
-    let generated_path = dmg_cracker::dmg::generate_random_mount_path();
+fn generate_random_string_returns_correctly() {
+    let generated_path = dmg_cracker::dmg::generate_random_string();
     assert!(is_mounting_path_valid(&generated_path));
 }
 
