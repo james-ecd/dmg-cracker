@@ -186,7 +186,7 @@ dependencies = [
 
 [[package]]
 name = "dmg-cracker"
-version = "0.3.0"
+version = "0.3.1"
 dependencies = [
  "clap",
  "csv",
