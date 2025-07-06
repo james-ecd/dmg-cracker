@@ -15,7 +15,28 @@ static PADLOCK: Emoji<'_, '_> = Emoji("🔒", "");
 
 pub fn run() {
     let args = cli::Args::parse();
-    let passwords = read_password_list(&args.password_list_path).unwrap();
+
+    let passwords = match read_password_list(&args.password_list_path) {
+        Ok(passwords) => passwords,
+        Err(e) => {
+            eprintln!(
+                "❌ Error reading password list from '{}': {}",
+                args.password_list_path, e
+            );
+            eprintln!("💡 Please check:");
+            eprintln!("   - File exists and is readable");
+            eprintln!("   - File format is correct (.txt or .csv)");
+            eprintln!("   - You have permission to read the file");
+            std::process::exit(1);
+        }
+    };
+
+    if passwords.is_empty() {
+        eprintln!("❌ Error: Password list is empty");
+        eprintln!("💡 Please ensure your password file contains at least one password");
+        std::process::exit(1);
+    }
+
     println!("{PADLOCK} Attempting passwords...");
     let found_password = attempt_passwords_in_parallel(
         &passwords,

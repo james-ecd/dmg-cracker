@@ -22,7 +22,7 @@ impl Dmg {
     }
 
     fn attempt_attach(&self, password: &str) -> bool {
-        let mut child = Command::new("hdiutil")
+        let mut child = match Command::new("hdiutil")
             .arg("verify")
             .arg("-stdinpass")
             .arg(&self.dmg_path)
@@ -30,18 +30,35 @@ impl Dmg {
             .stdout(Stdio::null())
             .stderr(Stdio::null())
             .spawn()
-            .expect("failed to execute hdiutil");
+        {
+            Ok(child) => child,
+            Err(e) => {
+                eprintln!("❌ Error: Failed to execute hdiutil command: {e}");
+                eprintln!("💡 Please ensure:");
+                eprintln!("   - You're running on macOS (hdiutil is required)");
+                eprintln!("   - You have permission to access the DMG file");
+                eprintln!("   - The DMG file exists and is not corrupted");
+                std::process::exit(1);
+            }
+        };
 
-        child
-            .stdin
-            .as_mut()
-            .expect("failed to open stdin")
-            .write_all(password.as_bytes())
-            .expect("failed to write password to stdin");
+        if let Some(stdin) = child.stdin.as_mut() {
+            if let Err(e) = stdin.write_all(password.as_bytes()) {
+                eprintln!("❌ Error: Failed to write password to hdiutil: {e}");
+                return false;
+            }
+        } else {
+            eprintln!("❌ Error: Failed to get stdin handle for hdiutil");
+            return false;
+        }
 
-        let output =
-            child.wait_with_output().expect("failed to wait on hdiutil");
-        output.status.success()
+        match child.wait_with_output() {
+            Ok(output) => output.status.success(),
+            Err(e) => {
+                eprintln!("❌ Error: Failed to wait for hdiutil process: {e}");
+                false
+            }
+        }
     }
 }
 

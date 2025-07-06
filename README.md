@@ -96,6 +96,28 @@ dmg-cracker -p passwords.csv -d encrypted.dmg -t 4
 
 The tool will display progress bars for each thread and stop when the correct password is found.
 
+## Troubleshooting
+
+### Permission Denied Error
+If you encounter "Operation not permitted" errors:
+
+```bash
+# Grant Full Disk Access to Terminal app:
+# 1. Open System Preferences → Security & Privacy → Privacy
+# 2. Select "Full Disk Access" from the left sidebar
+# 3. Click the lock icon and enter your password
+# 4. Click "+" and add Terminal (or your terminal app)
+# 5. Restart your terminal
+
+# Alternative: Run with elevated privileges (not recommended)
+sudo dmg-cracker -p passwords.txt -d encrypted.dmg -t 4
+```
+
+### Common Issues
+- **"hdiutil command not found"**: You're not running on macOS
+- **"No such file or directory"**: Check DMG and password file paths
+- **"Empty password list"**: Ensure password file has content and correct format
+
 ## Upcoming features
 - investigate implementing AES decrpytion manually. Current road block being a method of extracting the key generation salt from the dmg file headers
 - support for testing different permutations of a given password list
