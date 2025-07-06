@@ -37,7 +37,9 @@ jobs:
 
     - name: Install dependencies
       run: |
-        cargo install cargo-tarpaulin
+        if ! cargo tarpaulin --version &> /dev/null; then
+          cargo install cargo-tarpaulin --locked
+        fi
 
     - name: Run tests
       run: |
