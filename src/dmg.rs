@@ -25,6 +25,7 @@ impl Dmg {
         let mut child = match Command::new("hdiutil")
             .arg("verify")
             .arg("-stdinpass")
+            .arg("-quiet")
             .arg(&self.dmg_path)
             .stdin(Stdio::piped())
             .stdout(Stdio::null())
