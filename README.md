@@ -12,12 +12,58 @@ should not be used for illegal purposes. The author assumes no
 responsibility for any misuse of the tool and it is the responsibility 
 of the user to comply with all applicable laws and regulations.
 
+<!--suppress HtmlDeprecatedAttribute -->
 <p align="center">
   <img src="./resources/demo.gif" alt="Demo GIF">
 </p>
 
 ## Installation
 `cargo install dmg-cracker`
+
+## Usage
+
+### Basic Usage
+```bash
+dmg-cracker -p <password-list.txt> -d <encrypted-file.dmg> -t <thread-count>
+```
+
+**Required Arguments:**
+- `-p, --password-list-path`: Path to a text file containing passwords (one per line)
+- `-d, --dmg-path`: Path to the encrypted DMG file
+
+**Optional Arguments:**
+- `-t, --thread-count`: Number of threads to use (defaults to number of logical CPU cores)
+
+### Creating a Password List
+
+Create a text file with one password per line:
+
+```bash
+# Example: passwords.txt
+password
+123456
+qwerty
+letmein
+admin
+password123
+welcome
+```
+
+You can use existing wordlists like:
+- [SecLists](https://github.com/danielmiessler/SecLists) - Comprehensive password lists
+- [rockyou.txt](https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt) - Popular password dictionary
+
+### Example
+
+```bash
+# Create a simple password list
+echo -e "password\n123456\nletmein\npassword123" > passwords.txt
+
+# Run the cracker
+dmg-cracker -p passwords.txt -d encrypted.dmg -t 4
+```
+
+The tool will display progress bars for each thread and stop when the correct password is found.
 
 ## Upcoming features
 - investigate implementing AES decrpytion manually. Current road block being a method of extracting the key generation salt from the dmg file headers
