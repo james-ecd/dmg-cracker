@@ -37,6 +37,7 @@ dmg-cracker -p <password-list.txt> -d <encrypted-file.dmg> -t <thread-count>
 
 **Optional Arguments:**
 - `-t, --thread-count`: Number of threads to use (defaults to number of logical CPU cores)
+- `-r, --randomize`: Randomize password order to avoid predictable patterns
 
 ### Creating a Password List
 
@@ -92,6 +93,12 @@ echo -e "password,type\n123456,weak\nletmein,simple\npassword123,variation" > pa
 
 # Run the cracker
 dmg-cracker -p passwords.csv -d encrypted.dmg -t 4
+```
+
+**Using randomized order:**
+```bash
+# Randomize password order to avoid predictable patterns
+dmg-cracker -p passwords.txt -d encrypted.dmg -t 4 --randomize
 ```
 
 The tool will display progress bars for each thread and stop when the correct password is found.
