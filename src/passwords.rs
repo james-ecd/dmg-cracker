@@ -2,17 +2,21 @@ use std::fs::File;
 use std::io::Read;
 use std::path::Path;
 
-pub fn read_password_list(filepath: &str) -> Result<Vec<String>, Box<dyn std::error::Error>> {
+pub fn read_password_list(
+    filepath: &str,
+) -> Result<Vec<String>, Box<dyn std::error::Error>> {
     let path = Path::new(filepath);
     let extension = path.extension().and_then(|ext| ext.to_str()).unwrap_or("");
-    
+
     match extension.to_lowercase().as_str() {
         "csv" => read_csv_passwords(filepath),
         _ => read_txt_passwords(filepath),
     }
 }
 
-fn read_txt_passwords(filepath: &str) -> Result<Vec<String>, Box<dyn std::error::Error>> {
+fn read_txt_passwords(
+    filepath: &str,
+) -> Result<Vec<String>, Box<dyn std::error::Error>> {
     let mut file = File::open(filepath)?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
@@ -24,13 +28,15 @@ fn read_txt_passwords(filepath: &str) -> Result<Vec<String>, Box<dyn std::error:
     Ok(passwords)
 }
 
-fn read_csv_passwords(filepath: &str) -> Result<Vec<String>, Box<dyn std::error::Error>> {
+fn read_csv_passwords(
+    filepath: &str,
+) -> Result<Vec<String>, Box<dyn std::error::Error>> {
     let file = File::open(filepath)?;
     let mut rdr = csv::ReaderBuilder::new()
         .has_headers(false)
         .from_reader(file);
     let mut passwords = Vec::new();
-    
+
     for result in rdr.records() {
         let record = result?;
         // Take the first column as the password
@@ -83,7 +89,10 @@ mod test_read_password_list {
         let password_list =
             read_password_list(temp_file.path().to_str().unwrap()).unwrap();
 
-        assert_eq!(password_list, vec!["password", "password1", "password2", "password3"]);
+        assert_eq!(
+            password_list,
+            vec!["password", "password1", "password2", "password3"]
+        );
     }
 
     #[test]
