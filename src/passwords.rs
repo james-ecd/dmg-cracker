@@ -14,17 +14,23 @@ pub fn read_password_list(
     }
 }
 
+fn validate_password(password: &str) -> Option<String> {
+    let trimmed = password.trim();
+    if trimmed.is_empty() {
+        None
+    } else {
+        Some(trimmed.to_string())
+    }
+}
+
 fn read_txt_passwords(
     filepath: &str,
 ) -> Result<Vec<String>, Box<dyn std::error::Error>> {
     let mut file = File::open(filepath)?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
-    let passwords: Vec<String> = contents
-        .lines()
-        .map(|line| line.trim().to_string())
-        .filter(|line| !line.is_empty())
-        .collect();
+    let passwords: Vec<String> =
+        contents.lines().filter_map(validate_password).collect();
     Ok(passwords)
 }
 
@@ -41,9 +47,8 @@ fn read_csv_passwords(
         let record = result?;
         // Take the first column as the password
         if let Some(password) = record.get(0) {
-            let trimmed = password.trim();
-            if !trimmed.is_empty() {
-                passwords.push(trimmed.to_string());
+            if let Some(validated) = validate_password(password) {
+                passwords.push(validated);
             }
         }
     }
